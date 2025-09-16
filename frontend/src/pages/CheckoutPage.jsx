@@ -111,7 +111,7 @@ export default function CheckoutPage() {
 
   const openRazorpay = (orderId, razorpayOrder) => {
     const options = {
-      key:"rzp_test_R8OFNIx0dn0Ggd", // Razorpay key id from env
+      key:import.meta.env.VITE_RAZORPAY_KEY_ID, // Razorpay key id from env
       amount: razorpayOrder?.amount, // in paise
       currency: "INR",
       name: "Vingo",

@@ -19,7 +19,8 @@ export default function SignIn() {
   const hoverColor = "#e64323"; // darker orange
   const bgColor = "#fff9f6"; // light off-white background
   const borderColor = "#ddd";
-const dispatch=useDispatch()
+  const dispatch = useDispatch();
+
   const handleSignIn = async () => {
     try {
       const result = await axios.post(
@@ -27,22 +28,28 @@ const dispatch=useDispatch()
         { email, password },
         { withCredentials: true }
       );
-     dispatch(setUserData(result.data))
+      dispatch(setUserData(result.data));
     } catch (error) {
       console.log(error);
     }
   };
 
+  // --- CORRECTED FUNCTION ---
   const handleGoogleAuth = async () => {
     try {
+      // Use the 'provider' you imported from firebase.js
       const result = await signInWithPopup(auth, provider);
-      console.log(result);
-      if(result){
-        const {data}=await axios.post(`${serverUrl}/api/auth/googleauth`,{
-          email:result.user.email,
-        },{withCredentials:true})
-         dispatch(setUserData(data))
-      }
+
+      const { data } = await axios.post(
+        `${serverUrl}/api/auth/google-auth`,
+        {
+          email: result.user.email,
+        },
+        { withCredentials: true }
+      );
+
+      // Dispatch the user data to the Redux store
+      dispatch(setUserData(data));
 
     } catch (error) {
       console.log(error);
