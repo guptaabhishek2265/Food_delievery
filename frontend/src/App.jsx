@@ -29,6 +29,7 @@ import MyDeliveredOrders from './pages/MyDeliveredOrders'
 import ShopItems from './pages/ShopItems'
 export const serverUrl="http://localhost:8000"
 
+
 function App() {
   const {userData,allShops,socket}=useSelector(state=>state.user)
  
