@@ -18,7 +18,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "https://food-delievery-jghb.onrender.com",
+    origin: "https://vingo-a1kt.onrender.com",
     methods: ["GET", "POST"],
     credentials: true,
   },
@@ -28,7 +28,7 @@ app.set("io", io);
 
 app.use(
   cors({
-    origin: "https://food-delievery-jghb.onrender.com",
+    origin: "https://vingo-a1kt.onrender.com",
     credentials: true,
   })
 );
