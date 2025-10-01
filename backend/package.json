@@ -9,7 +9,8 @@
   "scripts": {
     "dev": "nodemon index.js",
     "start": "node index.js",
-    "build": "echo 'No build step required'"
+    "build": "echo 'No build step required'",
+    "vercel-build": "echo 'No build step required'"
   },
   "dependencies": {
     "bcryptjs": "^3.0.2",

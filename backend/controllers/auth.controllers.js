@@ -32,11 +32,87 @@ export const signUp = async (req, res) => {
         })
         const token = await genToken(user._id)
 
+<<<<<<< HEAD
         res.cookie("token", token, {
             httpOnly: true,
             maxAge: 10 * 365 * 24 * 60 * 60 * 1000,
             secure: false,
             sameSite: "Strict"
+=======
+        res.cookie("token",token,{
+            httpOnly:true,
+            maxAge:10*365*24*60*60*1000,
+            secure:true,
+            sameSite:"none"
+        })
+
+     return res.status(201).json(user) 
+
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({message:`signup error ${error}`})
+    }
+}
+
+export const signIn=async (req,res)=>{
+    try {
+        const {password,email}=req.body
+       
+         const user=await User.findOne({email})
+        if(!user){
+            return res.status(400).json({message:"User not found !"})
+        }
+
+     const isMatch=await bcrypt.compare(password,user.password)
+
+       if(!isMatch){
+         return res.status(400).json({message:"Incorrect Password !"})
+       }
+
+        const token=await genToken(user._id)
+
+        res.cookie("token",token,{
+             httpOnly:true,
+            maxAge:10*365*24*60*60*1000,
+            secure:true,
+            sameSite:"none"
+        })
+
+        return res.status(200).json(user)
+
+    } catch (error) {
+        return res.status(500).json({message:`signin error ${error}`})
+    }
+}
+
+
+export const signOut=async (req,res)=>{
+    try {
+        res.clearCookie("token")
+        return res.status(200).json({message:"sign out successfully"})
+    } catch (error) {
+        return res.status(500).json({message:`signout error ${error}`})
+    }
+}
+export const googleAuth=async (req,res)=>{
+    try {
+        const {fullName,email,role,mobile}=req.body
+        let user=await User.findOne({email})
+        if(!user){
+          user=await User.create({
+            fullName,
+            email,
+            role,mobile
+        })
+        }
+        const token=await genToken(user._id)
+
+        res.cookie("token",token,{
+             httpOnly:true,
+            maxAge:10*365*24*60*60*1000,
+            secure:true,
+            sameSite:"none"
+>>>>>>> 2d648b20cd2b8039aa50a3c004e7c91b76bdfbef
         })
 
         return res.status(201).json(user)

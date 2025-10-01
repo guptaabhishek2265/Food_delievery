@@ -1,4 +1,4 @@
-\import express from "express";
+import express from "express";
 import dotenv from "dotenv";
 import connectDb from "./config/db.js";
 import cookieParser from "cookie-parser";
@@ -18,7 +18,11 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
+<<<<<<< HEAD
     origin: process.env.FRONTEND_URL || "http://localhost:5173",
+=======
+    origin: "https://vingo-a1kt.onrender.com",
+>>>>>>> 2d648b20cd2b8039aa50a3c004e7c91b76bdfbef
     methods: ["GET", "POST"],
     credentials: true,
   },
@@ -28,7 +32,11 @@ app.set("io", io);
 
 app.use(
   cors({
+<<<<<<< HEAD
     origin: process.env.FRONTEND_URL || "http://localhost:5173",
+=======
+    origin: "https://vingo-a1kt.onrender.com",
+>>>>>>> 2d648b20cd2b8039aa50a3c004e7c91b76bdfbef
     credentials: true,
   })
 );
@@ -48,7 +56,15 @@ app.get("/", (req, res) => {
 
 socketHandler(io);
 
-server.listen(port, () => {
-  console.log(`server started at ${port}`);
-  connectDb();
-});
+// Connect to database immediately
+connectDb();
+
+// For Vercel, we export the app instead of listening
+if (process.env.NODE_ENV !== 'production') {
+  server.listen(port, () => {
+    console.log(`server started at ${port}`);
+  });
+}
+
+// Export for Vercel
+export default app;
