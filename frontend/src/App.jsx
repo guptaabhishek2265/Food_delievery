@@ -11,8 +11,6 @@ import getAllShops from "./hooks/getAllShops";
 import EditShop from "./pages/EditShop";
 import { setShop, setSocket } from "./redux/userSlice";
 import getCurrentShop from "./hooks/getCurrentShop";
-
-<<<<<<< HEAD
 import AddItem from "./pages/AddItem";
 import EditItem from "./pages/EditItem";
 import getShopsByCity from "./hooks/getShopsByCity";
@@ -28,25 +26,8 @@ import updateLocation from "./hooks/updateLocation";
 import TrackOrderPage from "./pages/TrackOrderPage";
 import MyDeliveredOrders from "./pages/MyDeliveredOrders";
 import ShopItems from "./pages/ShopItems";
+
 export const serverUrl = import.meta.env.VITE_API_URL || "http://localhost:8000";
-=======
-import AddItem from './pages/AddItem'
-import EditItem from './pages/EditItem'
-import getShopsByCity from './hooks/getShopsByCity'
-import getItemsByCity from './hooks/getItemsByCity'
-import CartPage from './pages/CartPage'
-import CheckoutPage from './pages/CheckoutPage'
-import OrderPlaced from './pages/OrderPlaced'
-import MyOrders from './pages/MyOrders'
-import getOwnerPendingOrders from './hooks/getOwnerPendingOrders'
-import PendingOrders from './pages/PendingOrders'
-import { io } from 'socket.io-client'
-import updateLocation from './hooks/updateLocation'
-import TrackOrderPage from './pages/TrackOrderPage'
-import MyDeliveredOrders from './pages/MyDeliveredOrders'
-import ShopItems from './pages/ShopItems'
-export const serverUrl="https://varian-backend.onrender.com"
->>>>>>> 2d648b20cd2b8039aa50a3c004e7c91b76bdfbef
 
 function App() {
   const { userData, allShops, socket } = useSelector((state) => state.user);
