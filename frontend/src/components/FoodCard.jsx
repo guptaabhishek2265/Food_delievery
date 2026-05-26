@@ -34,7 +34,7 @@ const handleIncrease = () => {
       dispatch(addToCart({
         id: data._id,
         name: data.name,
-        shop:data.shop,
+        shop: data.shop?._id || data.shop,
         price: data.price,
         quantity,
         image: data.image,

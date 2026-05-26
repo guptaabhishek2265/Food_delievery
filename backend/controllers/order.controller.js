@@ -24,7 +24,10 @@ export const placeOrder = async (req, res) => {
       return res.status(400).json({ success: false, message: "Cart is empty" });
     }
 
-    if (!address || !address.text || !address.latitude || !address.longitude) {
+    const latitude = Number(address?.latitude);
+    const longitude = Number(address?.longitude);
+
+    if (!address?.text || !Number.isFinite(latitude) || !Number.isFinite(longitude)) {
       return res.status(400).json({
         success: false,
         message: "Address (text, latitude, longitude) is required",
@@ -34,7 +37,10 @@ export const placeOrder = async (req, res) => {
     // 🟢 Group items by shop
     const groupedByShop = {};
     cartItems.forEach((item) => {
-      const shopId = item.shop;
+      const shopId = item.shop?._id || item.shop;
+      if (!shopId) {
+        throw new Error(`Shop id is missing for item: ${item.name || item.id}`);
+      }
       if (!groupedByShop[shopId]) groupedByShop[shopId] = [];
       groupedByShop[shopId].push(item);
     });
@@ -82,7 +88,7 @@ export const placeOrder = async (req, res) => {
 
       let newOrder = await Order.create({
         user: req.userId,
-        address,
+        address: { ...address, latitude, longitude },
         paymentMethod,
         totalAmount,
         shopOrders,
@@ -101,7 +107,7 @@ export const placeOrder = async (req, res) => {
     // 🟢 COD Order
     let newOrder = await Order.create({
       user: req.userId,
-      address,
+      address: { ...address, latitude, longitude },
       paymentMethod,
       totalAmount,
       shopOrders,
