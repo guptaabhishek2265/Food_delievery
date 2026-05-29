@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
@@ -31,6 +31,7 @@ export const serverUrl = import.meta.env.VITE_API_URL || "http://localhost:8000"
 
 function App() {
   const { userData, allShops, socket } = useSelector((state) => state.user);
+  const [deliveryOtpNotice, setDeliveryOtpNotice] = useState(null);
 
   getCurrentUser();
   getCity();
@@ -55,13 +56,45 @@ function App() {
       }
     });
 
+    socketInstance.on("delivery:otpSent", (data) => {
+      setDeliveryOtpNotice(data);
+      alert(`Your delivery OTP is ${data.otp}`);
+    });
+
     return () => {
       socketInstance.disconnect();
     };
-  }, [userData?._id]);
+  }, [userData?._id, userData?.role]);
 
   return (
-    <Routes>
+    <>
+      {userData?.role === "user" && deliveryOtpNotice && (
+        <div className="fixed top-4 left-1/2 z-50 w-[92%] max-w-[420px] -translate-x-1/2 rounded-lg border border-orange-200 bg-white p-4 shadow-lg">
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <p className="text-sm font-semibold text-gray-800">
+                Delivery OTP
+              </p>
+              <p className="mt-1 text-2xl font-bold tracking-widest text-[#ff4d2d]">
+                {deliveryOtpNotice.otp}
+              </p>
+              <p className="mt-1 text-xs text-gray-500">
+                Share this OTP with the delivery boy to complete delivery.
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => setDeliveryOtpNotice(null)}
+              className="rounded-md px-2 py-1 text-sm font-semibold text-gray-500 hover:bg-gray-100"
+              aria-label="Close delivery OTP"
+            >
+              X
+            </button>
+          </div>
+        </div>
+      )}
+
+      <Routes>
       <Route
         path="/signup"
         element={!userData ? <SignUp /> : <Navigate to={"/"} />}
@@ -122,7 +155,8 @@ function App() {
         path="/shop-items/:shopId"
         element={userData ? <ShopItems /> : <Navigate to={"/signin"} />}
       />
-    </Routes>
+      </Routes>
+    </>
   );
 }
 

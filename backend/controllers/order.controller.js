@@ -730,8 +730,22 @@ export const sendDeliveryOtp = async (req, res) => {
     shopOrder.otpExpiresAt = Date.now() + 5 * 60 * 1000; // 5 min expiry
     await order.save();   // ✅ parent ko save karo
 
-    // Send OTP to user (SMS / Email)
-    await sendOtpToUser(order.user, otp);
+    const io = req.app.get("io");
+    if (io && order.user?._id) {
+      io.to(`user_${order.user._id}`).emit("delivery:otpSent", {
+        orderId: order._id,
+        shopOrderId: shopOrder._id,
+        otp: String(otp),
+        expiresAt: shopOrder.otpExpiresAt,
+      });
+    }
+
+    // Send OTP to user by email too, but don't block in-app delivery if mail fails.
+    try {
+      await sendOtpToUser(order.user, otp);
+    } catch (mailErr) {
+      console.error("Delivery OTP email failed:", mailErr);
+    }
 
     return res.json({
       success: true,
@@ -773,6 +787,14 @@ export const verifyDeliveryOtp = async (req, res) => {
       order:order._id,
       assignedTo:shopOrder.assignedDeliveryBoy
     })
+
+    const io = req.app.get("io");
+    if (io) {
+      io.emit("orders:statusUpdated", {
+        shopOrder,
+        orderId: order._id
+      });
+    }
 
     return res.json({ success: true, message: "Order delivered successfully" });
   } catch (err) {
