@@ -740,12 +740,10 @@ export const sendDeliveryOtp = async (req, res) => {
       });
     }
 
-    // Send OTP to user by email too, but don't block in-app delivery if mail fails.
-    try {
-      await sendOtpToUser(order.user, otp);
-    } catch (mailErr) {
+    // Send email in the background so the in-app OTP flow stays instant.
+    sendOtpToUser(order.user, otp).catch((mailErr) => {
       console.error("Delivery OTP email failed:", mailErr);
-    }
+    });
 
     return res.json({
       success: true,

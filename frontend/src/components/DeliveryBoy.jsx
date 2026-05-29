@@ -24,6 +24,7 @@ export default function DeliveryBoy() {
   const [todayStats, setTodayStats] = useState([]);
   const { userData } = useSelector((state) => state.user);
   const [showOtpBox, setShowOtpBox] = useState(false);
+  const [sendingOtp, setSendingOtp] = useState(false);
   const [otp, setOtp] = useState("");
 
   const fetchTodayStats = async () => {
@@ -141,6 +142,8 @@ export default function DeliveryBoy() {
 
   // 🔹 Send OTP request
   const sendOtp = async () => {
+    if (sendingOtp) return;
+    setSendingOtp(true);
     try {
       const res = await axios.post(
         `${serverUrl}/api/order/send-otp`,
@@ -153,11 +156,12 @@ export default function DeliveryBoy() {
 
       if (res.data.success) {
         setShowOtpBox(true);
-        alert(res.data.message);
       }
     } catch (err) {
       console.error(err);
       alert("Failed to send OTP");
+    } finally {
+      setSendingOtp(false);
     }
   };
 
@@ -169,7 +173,7 @@ export default function DeliveryBoy() {
         {
           orderId: currentOrder._id,
           shopOrderId: currentOrder.shopOrder._id,
-          otp,
+          otp: otp.trim(),
         },
         { withCredentials: true }
       );
@@ -243,10 +247,11 @@ export default function DeliveryBoy() {
 
             {!showOtpBox ? (
               <button
-                className="mt-4 w-full bg-green-500 text-white font-semibold py-2 px-4 rounded-xl shadow-md hover:bg-green-600 active:scale-95 transition-all duration-200"
+                className="mt-4 w-full bg-green-500 text-white font-semibold py-2 px-4 rounded-xl shadow-md hover:bg-green-600 active:scale-95 transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-70"
                 onClick={sendOtp}
+                disabled={sendingOtp}
               >
-                ✅ Mark As Delivered
+                {sendingOtp ? "Sending OTP..." : "✅ Mark As Delivered"}
               </button>
             ) : (
               <div className="mt-4 p-4 border rounded-xl bg-gray-50">
