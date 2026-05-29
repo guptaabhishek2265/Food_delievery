@@ -76,6 +76,17 @@ const userSlice=createSlice({
     state.ownerPendingOrders = [action.payload, ...state.ownerPendingOrders];
   }
 },
+    updateOwnerOrderStatus: (state, action) => {
+      const { orderId, shopOrder } = action.payload;
+      state.ownerPendingOrders = state.ownerPendingOrders.map((order) => {
+        if (String(order._id) !== String(orderId)) return order;
+        if (String(order.shopOrder?._id) !== String(shopOrder?._id)) return order;
+        return {
+          ...order,
+          shopOrder: { ...order.shopOrder, ...shopOrder },
+        };
+      });
+    },
 
 
      setSocket:(state,action)=>{
@@ -91,5 +102,5 @@ const userSlice=createSlice({
 
 })
 
-export const {setUserData,setCity,setAllShops,setShop,setShopsOfCity,setItemsOfCity,addToCart,updateQuantity,removeFromCart,setMyOrders,setOwnerPendingOrders,setSocket,setDeliveryBoys,setSearchItems,setPendingOrdersCount}=userSlice.actions
+export const {setUserData,setCity,setAllShops,setShop,setShopsOfCity,setItemsOfCity,addToCart,updateQuantity,removeFromCart,setMyOrders,setOwnerPendingOrders,updateOwnerOrderStatus,setSocket,setDeliveryBoys,setSearchItems,setPendingOrdersCount}=userSlice.actions
 export default userSlice.reducer

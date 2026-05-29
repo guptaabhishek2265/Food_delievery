@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setOwnerPendingOrders, setPendingOrdersCount } from "../redux/userSlice";
+import { setOwnerPendingOrders, updateOwnerOrderStatus } from "../redux/userSlice";
 import { serverUrl } from "../App";
 
 function useOwnerPendingOrders() {
@@ -21,15 +21,29 @@ function useOwnerPendingOrders() {
       fetchOrders();
 
       // realtime socket listener
-      socket?.on("orders:new", (data) => {
+      const handleNewOrder = (data) => {
         if (data.ownerId === userData._id) {
           dispatch(setOwnerPendingOrders(data.order));
          
         }
-      });
+      };
+
+      const handleStatusUpdated = (data) => {
+        const shopOrderOwner = data.shopOrder?.owner?._id || data.shopOrder?.owner;
+        if (String(shopOrderOwner) !== String(userData._id)) return;
+
+        dispatch(updateOwnerOrderStatus({
+          orderId: data.orderId,
+          shopOrder: data.shopOrder,
+        }));
+      };
+
+      socket?.on("orders:new", handleNewOrder);
+      socket?.on("orders:statusUpdated", handleStatusUpdated);
 
       return () => {
-        socket?.off("orders:new");
+        socket?.off("orders:new", handleNewOrder);
+        socket?.off("orders:statusUpdated", handleStatusUpdated);
       };
     }
   }, [userData, socket, dispatch]);

@@ -26,6 +26,17 @@ export default function DeliveryBoy() {
   const [showOtpBox, setShowOtpBox] = useState(false);
   const [otp, setOtp] = useState("");
 
+  const fetchTodayStats = async () => {
+    try {
+      const res = await axios.get(`${serverUrl}/api/order/stats/today`, {
+        withCredentials: true,
+      });
+      if (res.data.success) setTodayStats(res.data.stats);
+    } catch (err) {
+      console.error("Failed to fetch today stats", err);
+    }
+  };
+
   // 🔹 Track browser GPS and update backend
   useEffect(() => {
     if (navigator.geolocation) {
@@ -168,6 +179,7 @@ export default function DeliveryBoy() {
         setCurrentOrder(null);
         setShowOtpBox(false);
         setOtp("");
+        fetchTodayStats();
       } else {
         alert(res.data.message || "Invalid OTP");
       }

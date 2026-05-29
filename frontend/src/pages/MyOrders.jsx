@@ -34,7 +34,7 @@ export default function MyOrders() {
   // socket listener
   useEffect(() => {
     if (!socket) return;
-    socket.on("orders:statusUpdated", (data) => {
+    const handleStatusUpdated = (data) => {
       dispatch(
         setMyOrders(
           myOrders.map((order) => {
@@ -43,7 +43,7 @@ export default function MyOrders() {
                 ...order,
                 shopOrders: order.shopOrders.map((so) =>
                   so._id === data.shopOrder._id
-                    ? { ...so, status: data.shopOrder.status }
+                    ? { ...so, ...data.shopOrder }
                     : so
                 ),
               };
@@ -52,7 +52,13 @@ export default function MyOrders() {
           })
         )
       );
-    });
+    };
+
+    socket.on("orders:statusUpdated", handleStatusUpdated);
+
+    return () => {
+      socket.off("orders:statusUpdated", handleStatusUpdated);
+    };
   }, [socket, myOrders, dispatch]);
 
   const formatDate = (dateString) => {
