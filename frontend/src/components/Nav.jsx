@@ -52,19 +52,19 @@ function Nav() {
     }, [input]);
 
     return (
-        <div className="w-full h-[80px] flex items-center justify-between md:justify-center gap-[30px] px-[20px] fixed top-0 z-[9999] bg-[#fff9f6] overflow-visible">
+        <div className="w-full h-[82px] flex items-center justify-between md:justify-center gap-[30px] px-[20px] fixed top-0 z-[9999] overflow-visible border-b border-[#d5ece9] bg-white/85 shadow-sm backdrop-blur-xl">
 
             {/* Mobile Search Box */}
             {showSearch && userData?.role === "user" && (
-                <div className="w-[90%] h-[70px] bg-white shadow-xl rounded-lg items-center gap-[20px] z-[9999] flex fixed left-[5%] top-[80px]">
-                    <div className="flex items-center w-[30%] overflow-hidden gap-[10px] px-[10px] border-r-[2px] border-gray-400">
-                        <FaLocationDot className="w-[25px] h-[25px] text-[#ff4d2d]" />
-                        <div className="w-[80%] truncate text-gray-600">
+                <div className="w-[90%] h-[70px] brand-panel rounded-3xl items-center gap-[20px] z-[9999] flex fixed left-[5%] top-[90px]">
+                    <div className="flex items-center w-[30%] overflow-hidden gap-[10px] px-[10px] border-r border-[#d5ece9]">
+                        <FaLocationDot className="w-[25px] h-[25px] text-[#0f8b8d]" />
+                        <div className="w-[80%] truncate text-[#5f7474]">
                             {city || "searching.."}
                         </div>
                     </div>
                     <div className="w-[80%] flex items-center gap-[10px]">
-                        <IoIosSearch className="w-[25px] h-[25px] text-[#ff4d2d]" />
+                        <IoIosSearch className="w-[25px] h-[25px] text-[#0f8b8d]" />
                         <input
                             type="text"
                             placeholder="search delicious food..."
@@ -77,19 +77,21 @@ function Nav() {
             )}
 
             {/* Logo */}
-            <h1 className="text-3xl font-bold mb-2 text-[#ff4d2d]">Vingo</h1>
+            <h1 className="rounded-full bg-[#0f8b8d] px-5 py-2 text-2xl font-black tracking-wide text-white shadow-lg shadow-teal-900/10">
+                Bingo
+            </h1>
 
             {/* Desktop Search Box */}
             {userData?.role === "user" && (
-                <div className="md:w-[60%] lg:w-[40%] h-[70px] bg-white shadow-xl rounded-lg items-center gap-[20px] hidden md:flex">
-                    <div className="flex items-center w-[30%] overflow-hidden gap-[10px] px-[10px] border-r-[2px] border-gray-400">
-                        <FaLocationDot className="w-[25px] h-[25px] text-[#ff4d2d]" />
-                        <div className="w-[80%] truncate text-gray-600">
+                <div className="md:w-[60%] lg:w-[40%] h-[62px] brand-panel rounded-full items-center gap-[20px] hidden md:flex px-2">
+                    <div className="flex items-center w-[30%] overflow-hidden gap-[10px] px-[10px] border-r border-[#d5ece9]">
+                        <FaLocationDot className="w-[25px] h-[25px] text-[#0f8b8d]" />
+                        <div className="w-[80%] truncate text-[#5f7474]">
                             {city || "searching.."}
                         </div>
                     </div>
                     <div className="w-[80%] flex items-center gap-[10px]">
-                        <IoIosSearch className="w-[25px] h-[25px] text-[#ff4d2d]" />
+                        <IoIosSearch className="w-[25px] h-[25px] text-[#0f8b8d]" />
                         <input
                             type="text"
                             placeholder="search delicious food..."
@@ -106,9 +108,9 @@ function Nav() {
                 {/* Mobile search toggle */}
                 {userData?.role === "user" && (
                     !showSearch ? (
-                        <IoIosSearch className="w-[25px] h-[25px] text-[#ff4d2d] md:hidden" onClick={() => setShowSearch(true)} />
+                        <IoIosSearch className="w-[25px] h-[25px] text-[#0f8b8d] md:hidden" onClick={() => setShowSearch(true)} />
                     ) : (
-                        <RxCross2 className="w-[25px] h-[25px] text-[#ff4d2d] md:hidden" onClick={() => setShowSearch(false)} />
+                        <RxCross2 className="w-[25px] h-[25px] text-[#0f8b8d] md:hidden" onClick={() => setShowSearch(false)} />
                     )
                 )}
 
@@ -118,35 +120,35 @@ function Nav() {
                         {/* Add Food Item */}
                         <button
                             onClick={() => navigate("/additem")}
-                            className="hidden md:flex items-center gap-1 p-2 cursor-pointer rounded-full bg-[#ff4d2d]/10 text-[#ff4d2d]"
+                            className="hidden md:flex items-center gap-1 px-4 py-2 cursor-pointer rounded-full bg-[#0f8b8d]/10 text-[#0f8b8d] hover:bg-[#0f8b8d] hover:text-white transition"
                         >
                             <FiPlus size={16} />
                             <span className="text-sm font-medium">Add Food Item</span>
                         </button>
                         <button
                             onClick={() => navigate("/additem")}
-                            className="flex md:hidden items-center justify-center p-2 cursor-pointer rounded-full bg-[#ff4d2d]/10 text-[#ff4d2d]"
+                            className="flex md:hidden items-center justify-center p-2 cursor-pointer rounded-full bg-[#0f8b8d]/10 text-[#0f8b8d]"
                         >
                             <FiPlus size={18} />
                         </button>
 
                         {/* Pending Orders */}
                         <div
-                            className="hidden md:flex items-center gap-2 cursor-pointer relative px-3 py-1 rounded-lg bg-[#ff4d2d]/10 text-[#ff4d2d] font-medium"
+                            className="hidden md:flex items-center gap-2 cursor-pointer relative px-4 py-2 rounded-full bg-[#0f8b8d]/10 text-[#0f8b8d] font-medium hover:bg-[#0f8b8d] hover:text-white transition"
                             onClick={() => navigate("/pending-orders")}
                         >
                             <TbReceipt2 className="w-[22px] h-[22px]" />
                             <span className="text-sm">My Orders</span>
-                            <span className="absolute -right-2 -top-2 text-xs font-bold text-white bg-[#ff4d2d] rounded-full px-[6px] py-[1px]">
+                            <span className="absolute -right-2 -top-2 text-xs font-bold text-white bg-[#0f8b8d] rounded-full px-[6px] py-[1px]">
                                 {pendingOrdersCount}
                             </span>
                         </div>
                         <div
-                            className="flex md:hidden items-center justify-center relative p-2 rounded-full bg-[#ff4d2d]/10 text-[#ff4d2d]"
+                            className="flex md:hidden items-center justify-center relative p-2 rounded-full bg-[#0f8b8d]/10 text-[#0f8b8d]"
                             onClick={() => navigate("/pending-orders")}
                         >
                             <TbReceipt2 className="w-[22px] h-[22px]" />
-                            <span className="absolute -right-1 -top-1 text-[10px] font-bold text-white bg-[#ff4d2d] rounded-full px-[4px] py-[0px]">
+                            <span className="absolute -right-1 -top-1 text-[10px] font-bold text-white bg-[#0f8b8d] rounded-full px-[4px] py-[0px]">
                               {pendingOrdersCount}
                             </span>
                         </div>
@@ -154,7 +156,7 @@ function Nav() {
                 ) : userData?.role === "deliveryBoy" ? (
                     <button
                         onClick={() => navigate("/my-delivered-orders")}
-                        className="px-3 py-1 rounded-lg bg-[#ff4d2d]/10 text-[#ff4d2d] text-sm font-medium"
+                        className="px-4 py-2 rounded-full bg-[#0f8b8d]/10 text-[#0f8b8d] text-sm font-medium hover:bg-[#0f8b8d] hover:text-white transition"
                     >
                         My Orders
                     </button>
@@ -162,8 +164,8 @@ function Nav() {
                     <>
                         {/* User Cart */}
                         <div className="relative cursor-pointer" onClick={() => navigate("/cart")}>
-                            <LuShoppingCart className="w-[25px] h-[25px] text-[#ff4d2d]" />
-                            <span className="absolute right-[-9px] top-[-12px] text-[#ff4d2d]">
+                            <LuShoppingCart className="w-[25px] h-[25px] text-[#0f8b8d]" />
+                            <span className="absolute right-[-9px] top-[-12px] text-[#0f8b8d]">
                                 {cartItems?.length}
                             </span>
                         </div>
@@ -172,7 +174,7 @@ function Nav() {
                         {userData?.role === "user" && (
                             <button
                                 onClick={() => navigate("/my-orders")}
-                                className="hidden md:block px-3 py-1 rounded-lg bg-[#ff4d2d]/10 text-[#ff4d2d] text-sm font-medium"
+                                className="hidden md:block px-4 py-2 rounded-full bg-[#0f8b8d]/10 text-[#0f8b8d] text-sm font-medium hover:bg-[#0f8b8d] hover:text-white transition"
                             >
                                 My Orders
                             </button>
@@ -183,20 +185,20 @@ function Nav() {
                 {/* Profile icon + Popup */}
                 <div className="relative overflow-visible">
                     <div
-                        className="w-[40px] h-[40px] rounded-full flex items-center justify-center bg-[#ff4d2d] text-white text-[18px] shadow-xl font-semibold cursor-pointer"
+                        className="w-[42px] h-[42px] rounded-full flex items-center justify-center bg-[#ff7a59] text-white text-[18px] shadow-xl shadow-orange-900/10 font-semibold cursor-pointer ring-4 ring-white"
                         onClick={() => setShowInfo(prev => !prev)}
                     >
                         {userData?.fullName?.slice(0, 1)}
                     </div>
 
                     {showInfo && (
-                        <div className="fixed top-[80px] right-[10px] md:right-[10%] lg:right-[25%] w-[180px] bg-white shadow-2xl rounded-xl p-[20px] flex flex-col gap-[10px] z-[9999]">
+                        <div className="fixed top-[86px] right-[10px] md:right-[10%] lg:right-[25%] w-[190px] brand-panel rounded-3xl p-[20px] flex flex-col gap-[10px] z-[9999]">
                             <div className="text-[17px] font-semibold">{userData?.fullName}</div>
 
                             {/* Mobile: My Orders */}
                             {userData?.role === "user" && (
                                 <div
-                                    className="md:hidden text-[#ff4d2d] font-semibold cursor-pointer"
+                                    className="md:hidden text-[#0f8b8d] font-semibold cursor-pointer"
                                     onClick={() => {
                                         setShowInfo(false);
                                         navigate("/my-orders");
@@ -207,7 +209,7 @@ function Nav() {
                             )}
 
                             <div
-                                className="text-[#ff4d2d] font-semibold cursor-pointer"
+                                className="text-[#0f8b8d] font-semibold cursor-pointer"
                                 onClick={handleLogOut}
                             >
                                 Log Out

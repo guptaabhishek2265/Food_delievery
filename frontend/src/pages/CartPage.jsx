@@ -24,38 +24,38 @@ function CartPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#fff9f6] flex justify-center p-6">
+    <div className="min-h-screen bg-transparent flex justify-center p-6">
         
-      <div className="w-full max-w-[800px]">
+      <div className="w-full max-w-[840px]">
         <div className="flex items-center gap-[20px] mb-6">
          <div className='' onClick={()=>navigate("/")}>
-                                <MdKeyboardBackspace className='w-[25px] h-[25px] text-[#ff4d2d]'/>
+                                <MdKeyboardBackspace className='w-[25px] h-[25px] text-[#0f8b8d]'/>
                                </div>
-        <h1 className="text-2xl font-bold  text-start">Your Cart</h1>
+        <h1 className="section-title text-3xl text-start">Your Cart</h1>
 </div>
         {cartItems.length === 0 ? (
-          <p className="text-gray-500 text-lg text-center">Your cart is empty.</p>
+          <p className="text-[#6b7f7f] text-lg text-center">Your cart is empty.</p>
         ) : (
           <>
             <div className="space-y-4">
               {cartItems.map((item) => (
                 <div
                   key={item.id}
-                  className="flex items-center justify-between bg-white p-4 rounded-xl shadow border"
+                  className="brand-panel flex items-center justify-between p-4 rounded-3xl"
                 >
                   {/* Left Side: Image & Info */}
                   <div className="flex items-center gap-4">
                     <img
                       src={item.image}
                       alt={item.name}
-                      className="w-20 h-20 object-cover rounded-lg border"
+                      className="w-20 h-20 object-cover rounded-2xl border border-[#d5ece9]"
                     />
                     <div>
-                      <h3 className="font-medium text-gray-800">{item.name}</h3>
-                      <p className="text-sm text-gray-500">
+                      <h3 className="font-medium text-[#173a3a]">{item.name}</h3>
+                      <p className="text-sm text-[#6b7f7f]">
                         ₹{item.price} × {item.quantity}
                       </p>
-                      <p className="font-bold text-gray-900">
+                      <p className="font-bold text-[#173a3a]">
                         ₹{(item.price * item.quantity).toFixed(2)}
                       </p>
                     </div>
@@ -88,15 +88,15 @@ function CartPage() {
             </div>
 
             {/* Total & Checkout */}
-            <div className="mt-6 bg-white p-4 rounded-xl shadow flex justify-between items-center border">
+            <div className="brand-panel mt-6 p-5 rounded-3xl flex justify-between items-center">
               <h3 className="text-lg font-semibold">Total Amount</h3>
-              <span className="text-xl font-bold text-[#ff4d2d]">
+              <span className="text-xl font-bold text-[#0f8b8d]">
                 ₹{totalAmount.toFixed(2)}
               </span>
             </div>
 
             <div className="mt-4 flex justify-end">
-              <button className="bg-[#ff4d2d] text-white px-6 py-3 rounded-lg text-lg font-medium hover:bg-[#e64526] transition" onClick={()=>navigate("/checkout")}>
+              <button className="brand-button px-6 py-3 rounded-2xl text-lg font-semibold transition" onClick={()=>navigate("/checkout")}>
                 Proceed to Checkout
               </button>
             </div>

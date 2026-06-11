@@ -34,7 +34,7 @@ function ShopItems() {
       {/* 🔙 Back Button */}
       <button
         onClick={() => navigate(-1)}
-        className="absolute top-4 left-4 z-20 flex items-center gap-2 bg-black/50 hover:bg-black/70 text-white px-3 py-2 rounded-full shadow-md transition"
+        className="absolute top-4 left-4 z-20 flex items-center gap-2 bg-black/50 hover:bg-black/70 text-white px-3 py-2 rounded-full shadow-xl shadow-teal-900/10 transition"
       >
         <FaArrowLeft className="text-lg" />
         <span className="hidden md:inline">Back</span>
@@ -49,7 +49,7 @@ function ShopItems() {
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-black/30 flex flex-col justify-center items-center text-center px-4">
-            <FaStoreAlt className="text-white text-4xl mb-3 drop-shadow-md" />
+            <FaStoreAlt className="text-white text-4xl mb-3 drop-shadow-xl shadow-teal-900/10" />
             <h1 className="text-3xl md:text-5xl font-extrabold text-white drop-shadow-lg">
               {shop.name}
             </h1>
@@ -65,7 +65,7 @@ function ShopItems() {
       {/* 🔥 Shop Info */}
       {shop && (
         <div className="max-w-4xl mx-auto px-6 py-6 text-center">
-          <div className="flex items-center justify-center gap-2 text-gray-600">
+          <div className="flex items-center justify-center gap-2 text-[#5f7474]">
             <FaMapMarkerAlt className="w-5 h-5 text-red-500" />
             <p className="text-lg font-medium">
               {shop.address || "Address not available"}
@@ -76,7 +76,7 @@ function ShopItems() {
 
       {/* 🔥 Items Section */}
       <div className="max-w-7xl mx-auto px-6 py-10">
-        <h2 className="flex items-center justify-center gap-3 text-3xl font-bold mb-10 text-gray-800">
+        <h2 className="flex items-center justify-center gap-3 text-3xl font-bold mb-10 text-[#173a3a]">
           <FaUtensils className="text-red-500" />
           Our Menu
         </h2>
@@ -93,7 +93,7 @@ function ShopItems() {
             ))}
           </div>
         ) : (
-          <p className="text-center text-gray-500 text-lg">
+          <p className="text-center text-[#6b7f7f] text-lg">
             No items available
           </p>
         )}

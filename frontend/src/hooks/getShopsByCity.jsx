@@ -20,4 +20,3 @@ const fetchShops=async ()=>{
 }
 
 export default getShopsByCity
-

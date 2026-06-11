@@ -21,4 +21,3 @@ const fetchItems=async ()=>{
 }
 
 export default getItemsByCity
-

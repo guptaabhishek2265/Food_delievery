@@ -69,23 +69,23 @@ function App() {
   return (
     <>
       {userData?.role === "user" && deliveryOtpNotice && (
-        <div className="fixed top-4 left-1/2 z-50 w-[92%] max-w-[420px] -translate-x-1/2 rounded-lg border border-orange-200 bg-white p-4 shadow-lg">
+        <div className="fixed top-4 left-1/2 z-50 w-[92%] max-w-[420px] -translate-x-1/2 rounded-lg border border-[#bfe3df] bg-white p-4 shadow-lg">
           <div className="flex items-start justify-between gap-4">
             <div>
-              <p className="text-sm font-semibold text-gray-800">
+              <p className="text-sm font-semibold text-[#173a3a]">
                 Delivery OTP
               </p>
-              <p className="mt-1 text-2xl font-bold tracking-widest text-[#ff4d2d]">
+              <p className="mt-1 text-2xl font-bold tracking-widest text-[#0f8b8d]">
                 {deliveryOtpNotice.otp}
               </p>
-              <p className="mt-1 text-xs text-gray-500">
+              <p className="mt-1 text-xs text-[#6b7f7f]">
                 Share this OTP with the delivery boy to complete delivery.
               </p>
             </div>
             <button
               type="button"
               onClick={() => setDeliveryOtpNotice(null)}
-              className="rounded-md px-2 py-1 text-sm font-semibold text-gray-500 hover:bg-gray-100"
+              className="rounded-md px-2 py-1 text-sm font-semibold text-[#6b7f7f] hover:bg-gray-100"
               aria-label="Close delivery OTP"
             >
               X

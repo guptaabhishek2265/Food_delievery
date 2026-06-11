@@ -44,16 +44,16 @@ const navigate=useNavigate()
     };
 
     return (
-        <div className="flex justify-center flex-col items-center p-6 bg-gradient-to-br from-orange-50 relative to-white min-h-screen">
+        <div className="flex justify-center flex-col items-center p-6 bg-transparent relative min-h-screen">
             <div className='absolute top-[20px] left-[20px] z-[10] mb-[10px]' onClick={()=>navigate("/")}>
-                <MdKeyboardBackspace className='w-[25px] h-[25px] text-[#ff4d2d]'/>
+                <MdKeyboardBackspace className='w-[25px] h-[25px] text-[#0f8b8d]'/>
                </div>
-            <div className="max-w-lg w-full bg-white shadow-xl rounded-2xl p-8 border border-orange-100">
+            <div className="brand-panel max-w-lg w-full rounded-3xl p-8">
                 <div className="flex flex-col items-center mb-6">
-                    <div className="bg-orange-100 p-4 rounded-full mb-4">
-                        <FaUtensils className="text-[#ff4d2d] w-16 h-16" />
+                    <div className="bg-teal-100 p-4 rounded-full mb-4">
+                        <FaUtensils className="text-[#0f8b8d] w-16 h-16" />
                     </div>
-                    <h2 className="text-3xl font-extrabold text-gray-900">{!shop?"Add Shop":"Edit Shop"}</h2>
+                    <h2 className="text-3xl font-extrabold text-[#173a3a]">{!shop?"Add Shop":"Edit Shop"}</h2>
                 </div>
                 <form onSubmit={handleSubmit} className="space-y-5">
                     <div>
@@ -66,7 +66,7 @@ const navigate=useNavigate()
 
                             required
                             placeholder="Enter Shop Name"
-                            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+                            className="w-full px-4 py-3 border border-[#d5ece9] rounded-2xl focus:outline-none focus:ring-2 focus:ring-teal-600"
                         />
                     </div>
                     <div>
@@ -75,14 +75,14 @@ const navigate=useNavigate()
                             type="file"
                             accept="image/*"
                             onChange={handleImageChange}
-                            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+                            className="w-full px-4 py-3 border border-[#d5ece9] rounded-2xl focus:outline-none focus:ring-2 focus:ring-teal-600"
                         />
                         {frontendImage && (
                             <div className="mt-3">
                                 <img
                                     src={frontendImage}
                                     alt="Shop Preview"
-                                    className="w-full h-48 object-cover rounded-lg border"
+                                    className="w-full h-48 object-cover rounded-2xl border border-[#d5ece9]"
                                 />
                             </div>
                         )}
@@ -97,7 +97,7 @@ const navigate=useNavigate()
                             onChange={(e)=>setCity(e.target.value)}
                                 required
                                 placeholder="Enter city"
-                                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+                                className="w-full px-4 py-3 border border-[#d5ece9] rounded-2xl focus:outline-none focus:ring-2 focus:ring-teal-600"
                             />
                         </div>
                         <div>
@@ -109,7 +109,7 @@ const navigate=useNavigate()
                             onChange={(e)=>setState(e.target.value)}
                                 required
                                  placeholder="Enter state"
-                                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+                                className="w-full px-4 py-3 border border-[#d5ece9] rounded-2xl focus:outline-none focus:ring-2 focus:ring-teal-600"
                             />
                         </div>
                     </div>
@@ -122,12 +122,12 @@ const navigate=useNavigate()
                             required
                              placeholder="Enter address"
                             rows="3"
-                            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+                            className="w-full px-4 py-3 border border-[#d5ece9] rounded-2xl focus:outline-none focus:ring-2 focus:ring-teal-600"
                         />
                     </div>
                     <button
                         type="submit"
-                        className="w-full bg-[#ff4d2d] text-white px-6 py-3 rounded-lg font-semibold shadow-md hover:bg-orange-600 hover:shadow-lg transition-all duration-200"
+                        className="brand-button w-full px-6 py-3 rounded-2xl font-semibold shadow-xl shadow-teal-900/10 hover:bg-teal-700 hover:shadow-lg transition-all duration-200"
                     >
                         save
                     </button>

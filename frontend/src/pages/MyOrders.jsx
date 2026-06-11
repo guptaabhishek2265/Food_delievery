@@ -73,10 +73,10 @@ export default function MyOrders() {
   if (!loading && myOrders?.length === 0) {
     return (
       <div className="text-center py-10">
-        <p className="text-gray-600 mb-4">You have no orders yet.</p>
+        <p className="text-[#5f7474] mb-4">You have no orders yet.</p>
         <button
           onClick={() => navigate("/")}
-          className="bg-[#ff4d2d] hover:bg-[#e64526] text-white px-6 py-2 rounded-lg"
+          className="brand-button px-6 py-2 rounded-2xl"
         >
           Start Shopping
         </button>
@@ -85,12 +85,12 @@ export default function MyOrders() {
   }
 
   return (
-    <div className="w-full min-h-screen bg-[#fff9f6] flex justify-center px-4">
+    <div className="w-full min-h-screen bg-transparent flex justify-center px-4">
       <div className="w-full max-w-[800px] p-4">
         {/* Header */}
         <div className="flex gap-[20px] items-center mb-6">
           <div onClick={() => navigate("/")} className="cursor-pointer">
-            <MdKeyboardBackspace className="w-[25px] h-[25px] text-[#ff4d2d]" />
+            <MdKeyboardBackspace className="w-[25px] h-[25px] text-[#0f8b8d]" />
           </div>
           <h1 className="text-2xl font-bold">My Orders</h1>
         </div>
@@ -99,7 +99,7 @@ export default function MyOrders() {
           {myOrders?.map((order) => (
             <div
               key={order?._id}
-              className="bg-white rounded-lg shadow p-4 space-y-4"
+              className="bg-white rounded-2xl shadow p-4 space-y-4"
             >
               {/* Order Info */}
               <div className="flex justify-between border-b pb-2">
@@ -107,15 +107,15 @@ export default function MyOrders() {
                   <p className="font-semibold">
                     Order #{order?._id?.slice(-6)}
                   </p>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-[#6b7f7f]">
                     Date: {formatDate(order?.createdAt)}
                   </p>
                 </div>
                 <div className="text-right">
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-[#6b7f7f]">
                     Payment: {order?.paymentMethod?.toUpperCase()}
                   </p>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-[#6b7f7f]">
                     Status:{" "}
                     <span className="font-medium text-blue-600">
                       {order?.shopOrders?.[0]?.status}
@@ -128,10 +128,10 @@ export default function MyOrders() {
               {order?.shopOrders?.map((shopOrder, idx) => (
                 <div
                   key={idx}
-                  className="border rounded-lg p-3 bg-[#fffaf7] space-y-3"
+                  className="border rounded-2xl p-3 bg-[#fffaf7] space-y-3"
                 >
                   {/* Shop Name */}
-                  <p className="font-medium text-gray-800 text-lg">
+                  <p className="font-medium text-[#173a3a] text-lg">
                     {shopOrder?.shop?.name || "N/A"}
                   </p>
 
@@ -140,7 +140,7 @@ export default function MyOrders() {
                     {shopOrder.items.map((item) => (
                       <div
                         key={item?._id}
-                        className="flex-shrink-0 w-40 border rounded-lg p-2 bg-white"
+                        className="flex-shrink-0 w-40 border rounded-2xl p-2 bg-white"
                       >
                         <img
                           src={item?.item?.image || "/placeholder.png"}
@@ -150,7 +150,7 @@ export default function MyOrders() {
                         <p className="text-sm font-semibold mt-1">
                           {item?.name}
                         </p>
-                        <p className="text-xs text-gray-500">
+                        <p className="text-xs text-[#6b7f7f]">
                           Qty: {item?.quantity} × ₹{item?.price}
                         </p>
                       </div>
@@ -180,7 +180,7 @@ export default function MyOrders() {
                 ) : (
                   <button
                     onClick={() => navigate(`/track-order/${order._id}`)}
-                    className="bg-[#ff4d2d] hover:bg-[#e64526] text-white px-4 py-2 rounded-lg text-sm"
+                    className="brand-button px-4 py-2 rounded-2xl text-sm"
                   >
                     Track Order
                   </button>

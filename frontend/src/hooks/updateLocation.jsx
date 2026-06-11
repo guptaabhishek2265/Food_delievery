@@ -34,4 +34,3 @@ navigator.geolocation.watchPosition(
 }
 
 export default updateLocation
-

@@ -16,7 +16,7 @@ import { useEffect } from "react";
 import getOwnerPendingOrders from "../hooks/getOwnerPendingOrders";
 import { useNavigate } from "react-router-dom";
 
-const PRIMARY = "#ff4d2d";
+const PRIMARY = "#0f8b8d";
 const statusOptions = ["pending", "preparing", "out of delivery"];
 
 export default function PendingOrders() {
@@ -85,10 +85,10 @@ export default function PendingOrders() {
           >
             <MdOutlineShoppingBag size={26} />
           </div>
-          <h2 className="text-lg font-semibold text-gray-800">
+          <h2 className="text-lg font-semibold text-[#173a3a]">
             No Pending Orders
           </h2>
-          <p className="text-gray-500 text-sm">
+          <p className="text-[#6b7f7f] text-sm">
             You're all caught up for now.
           </p>
         </div>
@@ -100,7 +100,7 @@ export default function PendingOrders() {
    <div className="max-w-6xl mx-auto p-4">
    <div className="flex gap-[20px] items-center mb-6 md:justify-center">
             <div onClick={() => navigate("/")} className="cursor-pointer">
-              <MdKeyboardBackspace className="w-[25px] h-[25px] text-[#ff4d2d]" />
+              <MdKeyboardBackspace className="w-[25px] h-[25px] text-[#0f8b8d]" />
             </div>
             <h1 className="text-2xl font-bold md:text-center">My Orders</h1>
           </div>
@@ -113,19 +113,19 @@ export default function PendingOrders() {
       return (
         <div
           key={orderId}
-          className="w-full max-w-[800px] bg-white rounded-2xl border border-orange-100 shadow-sm hover:shadow-md transition-all p-5 flex flex-col gap-4"
+          className="w-full max-w-[800px] brand-panel rounded-3xl hover:-translate-y-1 transition-all p-5 flex flex-col gap-4"
         >
               {/* Customer Info */}
               <div>
-                <h2 className="text-lg font-semibold text-gray-800">
+                <h2 className="text-lg font-semibold text-[#173a3a]">
                   {order.user?.fullName ||
                     order.user?.name ||
                     "Customer"}
                 </h2>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-[#6b7f7f]">
                   {order.user?.email}
                 </p>
-                <div className="flex items-center gap-2 text-sm text-gray-600 mt-1">
+                <div className="flex items-center gap-2 text-sm text-[#5f7474] mt-1">
                   <MdPhone size={14} />{" "}
                   {order?.user?.mobile || "N/A"}
                 </div>
@@ -133,13 +133,13 @@ export default function PendingOrders() {
 
               {/* Address */}
               {order.address && (
-                <div className="flex items-start gap-2 text-gray-600 text-sm">
+                <div className="flex items-start gap-2 text-[#5f7474] text-sm">
                   <MdLocationOn size={16} className="mt-[2px]" />
                   <div>
                     {order.address?.text}
                     {order.address?.latitude &&
                       order.address?.longitude && (
-                        <p className="text-xs text-gray-500">
+                        <p className="text-xs text-[#6b7f7f]">
                           Lat: {order.address.latitude}, Lng:{" "}
                           {order.address.longitude}
                         </p>
@@ -159,7 +159,7 @@ export default function PendingOrders() {
                     >
                       <div>
                         <span className="font-medium">{item.name}</span>
-                        <span className="text-xs text-gray-500">
+                        <span className="text-xs text-[#6b7f7f]">
                           {" "}
                           × {item.quantity}
                         </span>
@@ -205,7 +205,7 @@ export default function PendingOrders() {
 </div>
               {/* Delivery Boys */}
               {order.shopOrder?.status === "out of delivery" && (
-                <div className="mt-3 p-2 border rounded-lg text-sm bg-orange-50">
+                <div className="mt-3 p-2 border rounded-2xl text-sm bg-teal-50">
                   {order.shopOrder?.assignedDeliveryBoy ? (
                     <p className="font-medium text-gray-700">
                       Assigned To:{" "}
@@ -219,7 +219,7 @@ export default function PendingOrders() {
                         Available Delivery Boys:
                       </p>
                       {deliveryBoys?.length > 0 ? (
-                        <ul className="list-disc list-inside text-gray-600">
+                        <ul className="list-disc list-inside text-[#5f7474]">
                           {deliveryBoys.map((boy) => (
                             <li key={boy._id || boy.id}>
                               {boy.fullName || boy.name} ({boy.mobile})
@@ -227,7 +227,7 @@ export default function PendingOrders() {
                           ))}
                         </ul>
                       ) : (
-                        <p className="text-gray-500 italic">
+                        <p className="text-[#6b7f7f] italic">
                           Waiting for delivery boy to accept...
                         </p>
                       )}
@@ -237,7 +237,7 @@ export default function PendingOrders() {
               )}
 
               {/* Total */}
-              <div className="text-right font-bold text-gray-800 text-sm">
+              <div className="text-right font-bold text-[#173a3a] text-sm">
                 Total: ₹{order.shopOrder?.subtotal}
               </div>
             </div>

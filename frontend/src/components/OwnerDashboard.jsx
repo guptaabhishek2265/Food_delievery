@@ -17,23 +17,23 @@ useEffect(()=>{
         dispatch(setPendingOrdersCount(pending.length));
 },[ownerPendingOrders])
   return (
-    <div className='w-full min-h-screen bg-[#fff9f6] flex flex-col items-center'>
+    <div className='w-full min-h-screen bg-transparent flex flex-col items-center pb-10'>
       <Nav />
 
       {/* If no shop */}
       {!shop && (
         <div className="flex justify-center items-center p-4 sm:p-6">
-          <div className="w-full max-w-md bg-white shadow-lg rounded-2xl p-6 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+          <div className="brand-panel w-full max-w-md rounded-3xl p-8 hover:-translate-y-1 transition-all duration-300">
             <div className="flex flex-col items-center text-center">
-              <FaUtensils className="text-[#ff4d2d] w-16 h-16 sm:w-20 sm:h-20 mb-4" />
-              <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">
+              <FaUtensils className="text-[#0f8b8d] w-16 h-16 sm:w-20 sm:h-20 mb-4" />
+              <h2 className="text-xl sm:text-2xl font-bold text-[#173a3a] mb-2">
                 Add Your Restaurant
               </h2>
-              <p className="text-gray-600 mb-4 text-sm sm:text-base">
+              <p className="text-[#5f7474] mb-4 text-sm sm:text-base">
                 Join our food delivery platform and reach thousands of hungry customers every day.
               </p>
               <button
-                className="bg-[#ff4d2d] text-white px-5 sm:px-6 py-2 rounded-full font-medium shadow-md hover:bg-orange-600 transition-colors duration-200"
+                className="brand-button px-6 py-3 rounded-full font-semibold transition duration-200"
                 onClick={() => navigate("/editshop")}
               >
                 Get Started
@@ -46,15 +46,15 @@ useEffect(()=>{
       {/* If shop exists but no items */}
       {shop && shop?.items?.length === 0 && (
         <div className='w-full flex flex-col items-center gap-6 px-4 sm:px-6'>
-          <h1 className="text-2xl sm:text-3xl text-gray-900 flex items-center gap-3 mt-8 text-center">
-            <FaUtensils className="text-[#ff4d2d]" /> Welcome to {shop.name}
+          <h1 className="text-2xl sm:text-3xl text-[#173a3a] flex items-center gap-3 mt-8 text-center">
+            <FaUtensils className="text-[#0f8b8d]" /> Welcome to {shop.name}
           </h1>
 
           {/* Shop Card */}
-          <div className="bg-white shadow-lg rounded-xl overflow-hidden border border-orange-100 hover:shadow-2xl transition-all duration-300 w-full max-w-3xl relative">
+          <div className="brand-panel rounded-3xl overflow-hidden transition-all duration-300 w-full max-w-3xl relative">
             <button
               onClick={() => navigate("/editshop")}
-              className="absolute top-4 right-4 bg-[#ff4d2d] text-white p-2 rounded-full shadow-md hover:bg-orange-600 transition-colors"
+              className="absolute top-4 right-4 brand-button p-3 rounded-full transition"
             >
               <FaPen />
             </button>
@@ -64,8 +64,8 @@ useEffect(()=>{
               className="w-full h-48 sm:h-64 object-cover"
             />
             <div className="p-4 sm:p-6">
-              <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">{shop.name}</h2>
-              <p className="text-gray-500 mb-4">{shop.city}, {shop.state}</p>
+              <h2 className="text-xl sm:text-2xl font-bold text-[#173a3a] mb-2">{shop.name}</h2>
+              <p className="text-[#6b7f7f] mb-4">{shop.city}, {shop.state}</p>
               <p className="text-gray-700 mb-4">{shop.address}</p>
               <div className="text-xs sm:text-sm text-gray-400">
                 <p>Created: {new Date(shop.createdAt).toLocaleString()}</p>
@@ -76,14 +76,14 @@ useEffect(()=>{
 
           {/* Add Item Section */}
           <div className="flex items-center justify-center w-full">
-            <div className="bg-white border border-orange-200 shadow-lg rounded-xl p-6 sm:p-8 w-full max-w-xl text-center hover:shadow-2xl transition-all duration-300">
-              <FaUtensils className="text-orange-500 text-4xl sm:text-5xl mx-auto mb-4" />
-              <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">Add Your Food Items</h2>
-              <p className="text-gray-600 mb-6 text-sm sm:text-base">
+            <div className="brand-panel rounded-3xl p-6 sm:p-8 w-full max-w-xl text-center transition-all duration-300">
+              <FaUtensils className="text-teal-600 text-4xl sm:text-5xl mx-auto mb-4" />
+              <h2 className="text-xl sm:text-2xl font-bold text-[#173a3a] mb-2">Add Your Food Items</h2>
+              <p className="text-[#5f7474] mb-6 text-sm sm:text-base">
                 Share your delicious creations with our customers by adding them to the menu.
               </p>
               <button
-                className="inline-flex items-center gap-2 bg-orange-500 text-white px-5 sm:px-6 py-2 sm:py-3 rounded-full font-semibold shadow-md hover:bg-orange-600 transition-colors"
+                className="brand-button inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition"
                 onClick={() => navigate("/additem")}
               >
                 <FaPlus /> Add Item
@@ -96,15 +96,15 @@ useEffect(()=>{
      {/* If shop and items exist */}
 {shop && shop?.items.length > 0 && (
   <div className='w-full flex flex-col gap-6 items-center px-4 sm:px-6 mb-[20px]'>
-    <h1 className="text-2xl sm:text-3xl text-gray-900 flex items-center gap-3 mt-8 text-center">
-      <FaUtensils className="text-[#ff4d2d]" /> Welcome to {shop.name}
+    <h1 className="text-2xl sm:text-3xl text-[#173a3a] flex items-center gap-3 mt-8 text-center">
+      <FaUtensils className="text-[#0f8b8d]" /> Welcome to {shop.name}
     </h1>
 
     {/* Shop Card */}
-    <div className="bg-white shadow-lg rounded-xl overflow-hidden border border-orange-100 hover:shadow-2xl transition-all duration-300 w-full max-w-3xl relative">
+    <div className="brand-panel rounded-3xl overflow-hidden transition-all duration-300 w-full max-w-3xl relative">
       <button
         onClick={() => navigate("/editshop")}
-        className="absolute top-4 right-4 bg-[#ff4d2d] text-white p-2 rounded-full shadow-md hover:bg-orange-600 transition-colors"
+        className="absolute top-4 right-4 brand-button p-3 rounded-full transition"
       >
         <FaPen />
       </button>
@@ -114,8 +114,8 @@ useEffect(()=>{
         className="w-full h-48 sm:h-64 object-cover"
       />
       <div className="p-4 sm:p-6">
-        <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">{shop.name}</h2>
-        <p className="text-gray-500 mb-4">{shop.city}, {shop.state}</p>
+        <h2 className="text-xl sm:text-2xl font-bold text-[#173a3a] mb-2">{shop.name}</h2>
+        <p className="text-[#6b7f7f] mb-4">{shop.city}, {shop.state}</p>
         <p className="text-gray-700 mb-4">{shop.address}</p>
         <div className="text-xs sm:text-sm text-gray-400">
           <p>Created: {new Date(shop.createdAt).toLocaleString()}</p>

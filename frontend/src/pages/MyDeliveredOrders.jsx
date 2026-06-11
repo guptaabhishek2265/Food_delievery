@@ -26,7 +26,7 @@ const navigate=useNavigate()
 
   if (orders.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center h-[70vh] text-gray-500">
+      <div className="flex flex-col items-center justify-center h-[70vh] text-[#6b7f7f]">
         <img
           src="https://cdn-icons-png.flaticon.com/512/2038/2038854.png"
           alt="No orders"
@@ -39,23 +39,23 @@ const navigate=useNavigate()
 
   return (
     <div className="p-6 max-w-5xl mx-auto">
-      <h2 className="text-2xl font-bold mb-6 text-gray-800 flex items-center">
+      <h2 className="text-2xl font-bold mb-6 text-[#173a3a] flex items-center">
    
                     <div onClick={() => navigate("/")} className="cursor-pointer">
-                      <MdKeyboardBackspace className="w-[25px] h-[25px] text-[#ff4d2d]" />
+                      <MdKeyboardBackspace className="w-[25px] h-[25px] text-[#0f8b8d]" />
                     </div>
                    
         <span className="mr-2">📦</span>
-        <span style={{ color: "#ff4d2d" }}>My Delivered Orders</span>
+        <span style={{ color: "#0f8b8d" }}>My Delivered Orders</span>
       </h2>
       <div className="grid gap-6">
         {orders.map((order) => (
           <div
             key={order._id}
-            className="bg-white rounded-2xl shadow-md border p-5 transition hover:shadow-xl"
+            className="brand-panel rounded-3xl p-5 transition hover:shadow-xl"
           >
             <div className="flex justify-between items-center border-b pb-3 mb-3">
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-[#6b7f7f]">
                 Order ID: <span className="font-mono">{order._id}</span>
               </p>
               {/* ✅ Delivered Badge (Green) */}
@@ -69,15 +69,15 @@ const navigate=useNavigate()
               .map((so) => (
                 <div
                   key={so._id}
-                  className="bg-gray-50 rounded-xl p-4 mb-3 border"
+                  className="bg-gray-50 rounded-2xl p-4 mb-3 border"
                 >
                   <p
                     className="font-semibold text-lg"
-                    style={{ color: "#ff4d2d" }}
+                    style={{ color: "#0f8b8d" }}
                   >
                     🏪 {so.shop?.name}
                   </p>
-                  <ul className="mt-2 space-y-1 text-sm text-gray-600">
+                  <ul className="mt-2 space-y-1 text-sm text-[#5f7474]">
                     {so.items.map((it) => (
                       <li
                         key={it._id}
@@ -88,7 +88,7 @@ const navigate=useNavigate()
                         </span>
                         <span
                           className="font-semibold"
-                          style={{ color: "#ff4d2d" }}
+                          style={{ color: "#0f8b8d" }}
                         >
                           ₹{it.price}
                         </span>
@@ -96,12 +96,12 @@ const navigate=useNavigate()
                     ))}
                   </ul>
                   <div className="flex justify-between items-center mt-3 text-sm">
-                    <span className="text-gray-500">
+                    <span className="text-[#6b7f7f]">
                       Total Items: {so.items.length}
                     </span>
                     <span
                       className="font-bold text-lg"
-                      style={{ color: "#ff4d2d" }}
+                      style={{ color: "#0f8b8d" }}
                     >
                       Subtotal: ₹{so.subtotal}
                     </span>

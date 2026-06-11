@@ -10,9 +10,9 @@ export default function ForgotPassword() {
   const [confirmPassword, setConfirmPassword] = useState("");
 const navigate=useNavigate()
   // Professional Food Delivery Theme
-  const primaryColor = "#ff4d2d"; // rich orange
-  const hoverColor = "#e64323"; // darker orange
-  const bgColor = "#fff9f6"; // light off-white background
+  const primaryColor = "#0f8b8d"; // rich orange
+  const hoverColor = "#0b6f71"; // darker orange
+  const bgColor = "#f4fbfa"; // light off-white background
   const borderColor = "#ddd";
 
  const handleSendOtp=async () => {
@@ -51,7 +51,7 @@ navigate("/signin")
       style={{ backgroundColor: bgColor }}
     >
       <div
-        className="bg-white rounded-xl shadow-lg w-full max-w-md p-8"
+        className="bg-white rounded-2xl shadow-lg w-full max-w-md p-8"
         style={{ border: `1px solid ${borderColor}` }}
       >
         {/* Heading */}
@@ -61,7 +61,7 @@ navigate("/signin")
         >
           Forgot Password
         </h1>
-        <p className="text-gray-600 text-center mb-8">
+        <p className="text-[#5f7474] text-center mb-8">
           Follow the steps to reset your password
         </p>
 
@@ -72,7 +72,7 @@ navigate("/signin")
             <input
               type="email"
               placeholder="Enter your email"
-              className="w-full border rounded-lg px-3 py-2 mb-4 focus:outline-none focus:border-orange-500"
+              className="w-full border rounded-lg px-3 py-2 mb-4 focus:outline-none focus:border-teal-600"
               style={{ borderColor: borderColor }}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -102,7 +102,7 @@ navigate("/signin")
             <input
               type="text"
               placeholder="Enter the OTP sent to your email"
-              className="w-full border rounded-lg px-3 py-2 mb-4 focus:outline-none focus:border-orange-500"
+              className="w-full border rounded-lg px-3 py-2 mb-4 focus:outline-none focus:border-teal-600"
               style={{ borderColor: borderColor }}
               value={otp}
               onChange={(e) => setOtp(e.target.value)}
@@ -132,7 +132,7 @@ navigate("/signin")
             <input
               type="password"
               placeholder="Enter new password"
-              className="w-full border rounded-lg px-3 py-2 mb-4 focus:outline-none focus:border-orange-500"
+              className="w-full border rounded-lg px-3 py-2 mb-4 focus:outline-none focus:border-teal-600"
               style={{ borderColor: borderColor }}
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
@@ -143,7 +143,7 @@ navigate("/signin")
             <input
               type="password"
               placeholder="Confirm new password"
-              className="w-full border rounded-lg px-3 py-2 mb-4 focus:outline-none focus:border-orange-500"
+              className="w-full border rounded-lg px-3 py-2 mb-4 focus:outline-none focus:border-teal-600"
               style={{ borderColor: borderColor }}
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
@@ -165,7 +165,7 @@ navigate("/signin")
         )}
 
         {/* Back to Login */}
-        <p className="mt-6 text-center text-gray-600">
+        <p className="mt-6 text-center text-[#5f7474]">
           Remember your password?{" "}
           <Link
             to="/signin"

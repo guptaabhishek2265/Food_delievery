@@ -59,11 +59,11 @@ const handleIncrease = () => {
   };
 
   return (
-    <div className="w-[250px] rounded-2xl border-2 border-[#ff4d2d] bg-white shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col">
+    <div className="w-[250px] overflow-hidden rounded-3xl border border-[#d5ece9] bg-white shadow-xl shadow-teal-900/10 transition-all duration-300 flex flex-col hover:-translate-y-1 hover:border-[#0f8b8d]">
       {/* Image & top icons */}
       <div className="relative w-full h-[170px] flex justify-center items-center bg-white">
         {/* Veg/Non-Veg Icon */}
-        <div className="absolute top-3 right-3 bg-white rounded-full p-1 shadow">
+        <div className="absolute top-3 right-3 bg-white/90 rounded-full p-2 shadow backdrop-blur">
           {data.type === "veg" ? (
             <FaLeaf className="text-green-600 text-lg" />
           ) : (
@@ -80,21 +80,21 @@ const handleIncrease = () => {
 
       {/* Content */}
       <div className="flex-1 flex flex-col p-4">
-        <h3 className="font-semibold text-gray-900 text-base truncate">
+        <h3 className="font-bold text-[#173a3a] text-base truncate">
           {data.name}
         </h3>
 
         {/* Rating */}
         <div className="flex items-center gap-1 mt-1">
           {renderStars(Math.round(data.rating?.average || 0))}
-          <span className="text-xs text-gray-500">
+          <span className="text-xs text-[#6b7f7f]">
             ({data.rating?.count || 0})
           </span>
         </div>
 
         {/* Price & Add to Cart */}
         <div className="flex items-center justify-between mt-auto pt-3">
-          <span className="font-bold text-gray-900 text-lg">
+          <span className="font-bold text-[#173a3a] text-lg">
             ₹{data.price}
           </span>
 
@@ -113,7 +113,7 @@ const handleIncrease = () => {
             >
               <FaPlus size={12} />
             </button>
-            <button className={`${cartItems.some(i=>i.id==data._id)?"bg-gray-700":"bg-[#ff4d2d]"} text-white px-3 py-2 transition-colors`} onClick={handleAddToCart}>
+            <button className={`${cartItems.some(i=>i.id==data._id)?"bg-gray-700":"bg-[#0f8b8d]"} text-white px-3 py-2 transition-colors hover:brightness-95`} onClick={handleAddToCart}>
               <FaShoppingCart size={14} />
             </button>
           </div>

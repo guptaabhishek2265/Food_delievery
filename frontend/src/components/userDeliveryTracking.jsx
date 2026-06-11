@@ -58,7 +58,7 @@ export default function UserDeliveryTracking({ orderId, userLocation, shopOrderI
   ];
 
   return (
-    <div className="w-full h-[400px] rounded-2xl overflow-hidden shadow-md mt-3">
+    <div className="w-full h-[400px] rounded-3xl overflow-hidden shadow-xl shadow-teal-900/10 mt-3">
       <MapContainer center={center} zoom={14} style={{ height: "100%", width: "100%" }}>
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 

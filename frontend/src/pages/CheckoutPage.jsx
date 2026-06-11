@@ -114,7 +114,7 @@ export default function CheckoutPage() {
       key:import.meta.env.VITE_RAZORPAY_KEY_ID, // Razorpay key id from env
       amount: razorpayOrder?.amount, // in paise
       currency: "INR",
-      name: "Vingo",
+      name: "Bingo",
       description: "Order Payment",
       order_id: razorpayOrder?.id,
       handler: async function (response) {
@@ -144,7 +144,7 @@ export default function CheckoutPage() {
         contact: userData?.phone
       },
       theme: {
-        color: "#ff4d2d"
+        color: "#0f8b8d"
       }
     };
 
@@ -153,19 +153,19 @@ export default function CheckoutPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#fff9f6] flex items-center justify-center p-6">
+    <div className="min-h-screen bg-transparent flex items-center justify-center p-6">
       {/* Back Button */}
       <div className="absolute top-[20px] left-[20px] z-[10]" onClick={() => navigate("/")}>
-        <MdKeyboardBackspace className="w-[25px] h-[25px] text-[#ff4d2d]" />
+        <MdKeyboardBackspace className="w-[25px] h-[25px] text-[#0f8b8d]" />
       </div>
 
-      <div className="w-full max-w-[900px] bg-white rounded-2xl shadow-xl p-6 space-y-6">
-        <h1 className="text-2xl font-bold text-gray-800">Checkout</h1>
+      <div className="brand-panel w-full max-w-[940px] rounded-3xl p-6 space-y-6">
+        <h1 className="section-title text-3xl">Checkout</h1>
 
         {/* Location Section */}
         <section>
-          <h2 className="text-lg font-semibold mb-2 flex items-center gap-2 text-gray-800">
-            <FaMapMarkerAlt className="text-[#ff4d2d]" /> Delivery Location
+          <h2 className="text-lg font-semibold mb-2 flex items-center gap-2 text-[#173a3a]">
+            <FaMapMarkerAlt className="text-[#0f8b8d]" /> Delivery Location
           </h2>
 
           {/* Input + Search + Current Location */}
@@ -174,18 +174,18 @@ export default function CheckoutPage() {
               type="text"
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
-              className="flex-1 border border-gray-300 rounded-lg p-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#ff4d2d]"
+              className="flex-1 border border-[#d5ece9] rounded-2xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#0f8b8d]"
               placeholder="Enter your delivery address"
             />
             <button
               onClick={() => forwardGeocode(searchText)}
-              className="bg-[#ff4d2d] hover:bg-[#e64526] text-white px-3 py-2 rounded-lg flex items-center justify-center"
+              className="brand-button px-4 py-3 rounded-2xl flex items-center justify-center"
             >
               <FaSearch />
             </button>
             <button
               onClick={getCurrentLocation}
-              className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded-lg flex items-center justify-center"
+              className="bg-[#ff7a59] hover:brightness-95 text-white px-4 py-3 rounded-2xl flex items-center justify-center"
               title="Use my current location"
             >
               <FaCrosshairs />
@@ -193,10 +193,10 @@ export default function CheckoutPage() {
           </div>
 
           {/* Map */}
-          <div className="rounded-xl border overflow-hidden">
+          <div className="rounded-3xl border border-[#d5ece9] overflow-hidden">
             <div className="h-64 w-full flex items-center justify-center">
               {loading ? (
-                <p className="text-gray-500">Fetching current location...</p>
+                <p className="text-[#6b7f7f]">Fetching current location...</p>
               ) : error ? (
                 <p className="text-red-500">{error}</p>
               ) : location.lat && location.lng ? (
@@ -216,7 +216,7 @@ export default function CheckoutPage() {
                   </Marker>
                 </MapContainer>
               ) : (
-                <p className="text-gray-500">Location not available</p>
+                <p className="text-[#6b7f7f]">Location not available</p>
               )}
             </div>
           </div>
@@ -224,22 +224,22 @@ export default function CheckoutPage() {
 
         {/* Payment */}
         <section>
-          <h2 className="text-lg font-semibold mb-3 text-gray-800">Payment Method</h2>
+          <h2 className="text-lg font-semibold mb-3 text-[#173a3a]">Payment Method</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {/* COD */}
             <button
               type="button"
               onClick={() => setMethod("cod")}
-              className={`flex items-center gap-3 rounded-xl border p-4 text-left transition ${
-                method === "cod" ? "border-[#ff4d2d] bg-orange-50 shadow" : "border-gray-200 hover:border-gray-300"
+              className={`flex items-center gap-3 rounded-2xl border p-4 text-left transition ${
+                method === "cod" ? "border-[#0f8b8d] bg-[#f4fbfa] shadow-xl shadow-teal-900/10" : "border-[#d5ece9] hover:border-[#0f8b8d]"
               }`}
             >
               <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-green-100">
                 <MdDeliveryDining className="text-green-600 text-xl" />
               </span>
               <div>
-                <p className="font-medium text-gray-800">Cash on Delivery</p>
-                <p className="text-xs text-gray-500">Pay when your food arrives</p>
+                <p className="font-medium text-[#173a3a]">Cash on Delivery</p>
+                <p className="text-xs text-[#6b7f7f]">Pay when your food arrives</p>
               </div>
             </button>
 
@@ -247,8 +247,8 @@ export default function CheckoutPage() {
             <button
               type="button"
               onClick={() => setMethod("online")}
-              className={`flex items-center gap-3 rounded-xl border p-4 text-left transition ${
-                method === "online" ? "border-[#ff4d2d] bg-orange-50 shadow" : "border-gray-200 hover:border-gray-300"
+              className={`flex items-center gap-3 rounded-2xl border p-4 text-left transition ${
+                method === "online" ? "border-[#0f8b8d] bg-[#f4fbfa] shadow-xl shadow-teal-900/10" : "border-[#d5ece9] hover:border-[#0f8b8d]"
               }`}
             >
               <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-purple-100">
@@ -258,8 +258,8 @@ export default function CheckoutPage() {
                 <FaCreditCard className="text-blue-700 text-lg" />
               </span>
               <div>
-                <p className="font-medium text-gray-800">UPI / Credit / Debit Card</p>
-                <p className="text-xs text-gray-500">Pay securely online</p>
+                <p className="font-medium text-[#173a3a]">UPI / Credit / Debit Card</p>
+                <p className="text-xs text-[#6b7f7f]">Pay securely online</p>
               </div>
             </button>
           </div>
@@ -267,8 +267,8 @@ export default function CheckoutPage() {
 
         {/* Order Summary */}
         <section>
-          <h2 className="text-lg font-semibold mb-3 text-gray-800">Order Summary</h2>
-          <div className="rounded-xl border bg-gray-50 p-4 space-y-2">
+          <h2 className="text-lg font-semibold mb-3 text-[#173a3a]">Order Summary</h2>
+          <div className="rounded-3xl border border-[#d5ece9] bg-[#f4fbfa] p-5 space-y-2">
             {cartItems.map((it) => (
               <div key={it.id} className="flex justify-between text-sm text-gray-700">
                 <span>
@@ -278,7 +278,7 @@ export default function CheckoutPage() {
               </div>
             ))}
             <hr className="border-gray-200 my-2" />
-            <div className="flex justify-between font-medium text-gray-800">
+            <div className="flex justify-between font-medium text-[#173a3a]">
               <span>Subtotal</span>
               <span>₹{subtotal.toFixed(2)}</span>
             </div>
@@ -286,7 +286,7 @@ export default function CheckoutPage() {
               <span>Delivery Fee</span>
               <span>{deliveryFee === 0 ? "Free" : `₹${deliveryFee}`}</span>
             </div>
-            <div className="flex justify-between text-lg font-bold text-[#ff4d2d] pt-2">
+            <div className="flex justify-between text-lg font-bold text-[#0f8b8d] pt-2">
               <span>Total</span>
               <span>₹{total.toFixed(2)}</span>
             </div>
@@ -294,7 +294,7 @@ export default function CheckoutPage() {
         </section>
 
             <button
-          className="w-full bg-[#ff4d2d] hover:bg-[#e64526] text-white py-3 rounded-xl font-semibold"
+          className="brand-button w-full py-3 rounded-2xl font-semibold"
           onClick={handlePlaceOrder}
         >
           {method === "cod" ? "Place Order" : "Pay & Place Order"}

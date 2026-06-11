@@ -74,13 +74,13 @@ function UserDashboard() {
   }, [itemsOfCity]);
 
   return (
-    <div className="w-screen min-h-screen flex flex-col gap-5 items-center bg-[#fff9f6] overflow-y-auto">
+    <div className="w-screen min-h-screen flex flex-col gap-8 items-center overflow-y-auto px-4 pb-12">
       <Nav />
 
       {/* 🔎 Search Results Section on Top */}
       {searchItems && searchItems.length > 0 && (
-        <div className="w-full max-w-6xl flex flex-col gap-5 items-start p-5 bg-white shadow-md rounded-2xl mt-4">
-          <h1 className="text-gray-900 text-2xl sm:text-3xl font-semibold border-b border-gray-200 pb-2">
+        <div className="brand-panel w-full max-w-6xl flex flex-col gap-5 items-start p-5 rounded-3xl mt-2">
+          <h1 className="section-title text-2xl sm:text-3xl border-b border-[#d5ece9] pb-2">
             Search Results
           </h1>
           <div className="w-full h-auto flex flex-wrap gap-6 justify-center">
@@ -92,22 +92,22 @@ function UserDashboard() {
       )}
 
       {/* Categories */}
-      <div className="w-full max-w-6xl flex flex-col gap-5 items-start p-[10px]">
-        <h1 className="text-gray-800 text-2xl sm:text-3xl">
+      <div className="w-full max-w-6xl flex flex-col gap-5 items-start rounded-3xl bg-white/45 p-4">
+        <h1 className="section-title text-2xl sm:text-3xl">
           Inspiration for your first order
         </h1>
         <div className="relative w-full">
           {showCateLeft && (
             <button
               onClick={() => scrollHandler(cateScrollRef, 'left')}
-              className="absolute left-0 top-1/2 -translate-y-1/2 bg-[#ff4d2d] text-white p-2 rounded-full shadow-lg hover:bg-[#e64528] z-10"
+              className="absolute left-0 top-1/2 -translate-y-1/2 bg-[#0f8b8d] text-white p-2 rounded-full shadow-lg hover:bg-[#0b6f71] z-10"
             >
               <FaChevronLeft />
             </button>
           )}
           <div
             ref={cateScrollRef}
-            className="w-full flex overflow-x-auto gap-4 pb-2 scrollbar-thin scrollbar-thumb-[#ff4d2d] scrollbar-track-transparent scroll-smooth"
+            className="w-full flex overflow-x-auto gap-4 pb-2 scrollbar-thin scrollbar-thumb-[#0f8b8d] scrollbar-track-transparent scroll-smooth"
           >
             {categories?.map((cate, index) => (
               <CategoryCard
@@ -121,7 +121,7 @@ function UserDashboard() {
           {showCateRight && (
             <button
               onClick={() => scrollHandler(cateScrollRef, 'right')}
-              className="absolute right-0 top-1/2 -translate-y-1/2 bg-[#ff4d2d] text-white p-2 rounded-full shadow-lg hover:bg-[#e64528] z-10"
+              className="absolute right-0 top-1/2 -translate-y-1/2 bg-[#0f8b8d] text-white p-2 rounded-full shadow-lg hover:bg-[#0b6f71] z-10"
             >
               <FaChevronRight />
             </button>
@@ -130,22 +130,22 @@ function UserDashboard() {
       </div>
 
       {/* Shops */}
-      <div className="w-full max-w-6xl flex flex-col gap-5 items-start p-[10px]">
-        <h1 className="text-gray-800 text-2xl sm:text-3xl p-[10px]">
+      <div className="w-full max-w-6xl flex flex-col gap-5 items-start rounded-3xl bg-white/45 p-4">
+        <h1 className="section-title text-2xl sm:text-3xl">
           Best shops in {city}
         </h1>
         <div className="relative max-w-full">
           {showShopLeft && (
             <button
               onClick={() => scrollHandler(shopScrollRef, 'left')}
-              className="absolute left-0 top-1/2 -translate-y-1/2 bg-[#ff4d2d] text-white p-2 rounded-full shadow-lg hover:bg-[#e64528] z-10"
+              className="absolute left-0 top-1/2 -translate-y-1/2 bg-[#0f8b8d] text-white p-2 rounded-full shadow-lg hover:bg-[#0b6f71] z-10"
             >
               <FaChevronLeft />
             </button>
           )}
           <div
             ref={shopScrollRef}
-            className="w-full flex overflow-x-auto gap-4 pb-2 scrollbar-thin scrollbar-thumb-[#ff4d2d] scrollbar-track-transparent scroll-smooth"
+            className="w-full flex overflow-x-auto gap-4 pb-2 scrollbar-thin scrollbar-thumb-[#0f8b8d] scrollbar-track-transparent scroll-smooth"
           >
             {shopsOfCity?.map((shop, index) => (
               <CategoryCard
@@ -159,7 +159,7 @@ function UserDashboard() {
           {showShopRight && (
             <button
               onClick={() => scrollHandler(shopScrollRef, 'right')}
-              className="absolute right-0 top-1/2 -translate-y-1/2 bg-[#ff4d2d] text-white p-2 rounded-full shadow-lg hover:bg-[#e64528] z-10"
+              className="absolute right-0 top-1/2 -translate-y-1/2 bg-[#0f8b8d] text-white p-2 rounded-full shadow-lg hover:bg-[#0b6f71] z-10"
             >
               <FaChevronRight />
             </button>
@@ -168,8 +168,8 @@ function UserDashboard() {
       </div>
 
       {/* Food Items */}
-      <div className="w-full max-w-6xl flex flex-col gap-5 items-start p-[10px]">
-        <h1 className="text-gray-800 text-2xl sm:text-3xl p-[10px]">
+      <div className="w-full max-w-6xl flex flex-col gap-5 items-start rounded-3xl bg-white/45 p-4">
+        <h1 className="section-title text-2xl sm:text-3xl">
           Suggested items
         </h1>
         {updatedItemsList?.length > 0 && (

@@ -4,7 +4,7 @@ import axios from "axios";
 import { serverUrl } from "../App";
 import UserDeliveryTracking from "../components/userDeliveryTracking";
 import { MdKeyboardBackspace } from "react-icons/md";
-const PRIMARY = "#ff4d2d";
+const PRIMARY = "#0f8b8d";
 
 export default function TrackOrderPage() {
   const { orderId } = useParams();
@@ -35,14 +35,14 @@ const navigate=useNavigate()
     <div className="max-w-4xl mx-auto p-4 flex flex-col gap-6">
       <div className="flex gap-[20px] items-center mb-6 md:justify-center">
                   <div onClick={() => navigate("/")} className="cursor-pointer">
-                    <MdKeyboardBackspace className="w-[25px] h-[25px] text-[#ff4d2d]" />
+                    <MdKeyboardBackspace className="w-[25px] h-[25px] text-[#0f8b8d]" />
                   </div>
                   <h1 className="text-2xl font-bold md:text-center">Track Order</h1>
                 </div>
       {order.shopOrders.map((shopOrder) => (
         <div
           key={shopOrder._id}
-          className="bg-white p-4 rounded-2xl shadow-md border border-orange-100 space-y-4"
+          className="brand-panel p-4 rounded-3xl space-y-4"
         >
           {/* Shop & Order Info */}
           <div>
@@ -90,7 +90,7 @@ const navigate=useNavigate()
                     </p>
                   </div>
                 ) : (
-                  <p className="text-gray-500 italic">
+                  <p className="text-[#6b7f7f] italic">
                     Delivery boy not assigned yet
                   </p>
                 )}
@@ -98,7 +98,7 @@ const navigate=useNavigate()
 
               {/* Tracking Map */}
               {shopOrder.assignedDeliveryBoy && (
-                <div className="h-[400px] w-full rounded-2xl overflow-hidden shadow-md">
+                <div className="h-[400px] w-full rounded-3xl overflow-hidden shadow-xl shadow-teal-900/10">
                   <UserDeliveryTracking
                     orderId={order._id}
                     shopOrderId={shopOrder._id}

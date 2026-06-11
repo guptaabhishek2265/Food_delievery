@@ -1,5 +1,68 @@
 @import "tailwindcss";
 @import "leaflet/dist/leaflet.css";
+
+:root {
+  color: #173a3a;
+  background: #f4fbfa;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --brand: #0f8b8d;
+  --brand-dark: #0b6f71;
+  --accent: #ff7a59;
+  --ink: #173a3a;
+  --muted: #6b7f7f;
+  --surface: #ffffff;
+  --line: #d5ece9;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(15, 139, 141, 0.12), transparent 34%),
+    linear-gradient(135deg, #f4fbfa 0%, #eef8f2 45%, #fff7f2 100%);
+}
+
+button {
+  cursor: pointer;
+}
+
+input,
+select,
+textarea {
+  background: #ffffff;
+  color: var(--ink);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px rgba(15, 139, 141, 0.14);
+}
+
+.brand-panel {
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 18px 45px rgba(15, 82, 82, 0.08);
+  backdrop-filter: blur(14px);
+}
+
+.brand-button {
+  background: linear-gradient(135deg, var(--brand), var(--brand-dark));
+  color: white;
+  box-shadow: 0 12px 26px rgba(15, 139, 141, 0.25);
+}
+
+.brand-button:hover {
+  filter: brightness(0.96);
+}
+
+.section-title {
+  color: var(--ink);
+  font-weight: 800;
+  letter-spacing: 0;
+}
 /* Pure site ka scrollbar hide karke scroll allow karega */
 * {
  /* ya scroll */

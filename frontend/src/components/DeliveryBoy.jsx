@@ -15,7 +15,7 @@ import {
   CartesianGrid,
 } from "recharts";
 
-const PRIMARY = "#ff4d2d";
+const PRIMARY = "#0f8b8d";
 
 export default function DeliveryBoy() {
   const [location, setLocation] = useState({ lat: null, lng: null });
@@ -194,18 +194,18 @@ export default function DeliveryBoy() {
   };
 
   return (
-    <div className="w-screen min-h-screen bg-[#fff9f6] flex flex-col items-center pb-10 overflow-y-auto">
+    <div className="w-screen min-h-screen bg-transparent flex flex-col items-center pb-10 overflow-y-auto">
       <Nav />
 
-      <div className="w-full max-w-[800px] flex flex-col gap-5 items-center">
+      <div className="w-full max-w-[860px] flex flex-col gap-6 items-center px-4">
         {/* Header */}
-        <div className="bg-white rounded-2xl shadow-md p-5 flex justify-between items-center w-[90%] border border-orange-100">
+        <div className="brand-panel rounded-3xl p-6 flex justify-between items-center w-full">
           <div>
             <h1 className="text-xl font-bold" style={{ color: PRIMARY }}>
               Welcome, {userData.fullName}
             </h1>
             {location.lat && (
-              <p className="text-gray-500 text-sm flex items-center gap-1">
+              <p className="text-[#6b7f7f] text-sm flex items-center gap-1">
                 <MdLocationOn size={16} color={PRIMARY} />
                 Live Location: {location.lat.toFixed(4)}, {location.lng.toFixed(4)}
               </p>
@@ -214,7 +214,7 @@ export default function DeliveryBoy() {
         </div>
 
         {/* Today's Delivery Chart */}
-        <div className="bg-white rounded-2xl shadow-md p-5 w-[90%] mb-6 border border-orange-100">
+        <div className="brand-panel rounded-3xl p-6 w-full mb-2">
           <h2 className="text-lg font-bold mb-3" style={{ color: PRIMARY }}>
             📊 Today's Deliveries
           </h2>
@@ -231,13 +231,13 @@ export default function DeliveryBoy() {
 
         {/* Current Order */}
         {currentOrder && !currentOrder.shopOrder.deliveredAt && (
-          <div className="bg-white rounded-2xl p-5 shadow-md w-[90%] border border-orange-100">
+          <div className="brand-panel rounded-3xl p-6 w-full">
             <h2 className="text-lg font-bold mb-3">🚴 Current Order</h2>
-            <div className="border rounded-lg p-4 mb-3">
+            <div className="border border-[#d5ece9] rounded-2xl p-4 mb-3 bg-white/70">
               <p className="font-semibold text-sm">
                 {currentOrder.shopOrder.shop?.name || "Shop"}
               </p>
-              <p className="text-sm text-gray-500">{currentOrder.address?.text}</p>
+              <p className="text-sm text-[#6b7f7f]">{currentOrder.address?.text}</p>
               <p className="text-xs text-gray-400">
                 {currentOrder.shopOrder.items.length} items | ₹{currentOrder.shopOrder.subtotal}
               </p>
@@ -247,27 +247,27 @@ export default function DeliveryBoy() {
 
             {!showOtpBox ? (
               <button
-                className="mt-4 w-full bg-green-500 text-white font-semibold py-2 px-4 rounded-xl shadow-md hover:bg-green-600 active:scale-95 transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-70"
+                className="mt-4 w-full bg-[#ff7a59] text-white font-semibold py-3 px-4 rounded-2xl shadow-xl shadow-orange-900/10 hover:brightness-95 active:scale-95 transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-70"
                 onClick={sendOtp}
                 disabled={sendingOtp}
               >
                 {sendingOtp ? "Sending OTP..." : "✅ Mark As Delivered"}
               </button>
             ) : (
-              <div className="mt-4 p-4 border rounded-xl bg-gray-50">
+              <div className="mt-4 p-4 border border-[#d5ece9] rounded-2xl bg-[#f4fbfa]">
                 <p className="text-sm font-semibold mb-2">
                   Enter OTP sent to{" "}
-                  <span className="text-orange-500">{currentOrder.user?.fullName}</span>
+                  <span className="text-teal-600">{currentOrder.user?.fullName}</span>
                 </p>
                 <input
                   type="text"
                   value={otp}
                   onChange={(e) => setOtp(e.target.value)}
                   placeholder="Enter OTP"
-                  className="w-full border px-3 py-2 rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-orange-400"
+                  className="w-full border px-4 py-3 rounded-2xl mb-3 focus:outline-none focus:ring-2 focus:ring-teal-400"
                 />
                 <button
-                  className="w-full bg-orange-500 text-white py-2 rounded-lg font-semibold hover:bg-orange-600 transition-all"
+                  className="brand-button w-full py-3 rounded-2xl font-semibold transition-all"
                   onClick={verifyOtp}
                 >
                   Submit OTP
@@ -279,7 +279,7 @@ export default function DeliveryBoy() {
 
         {/* Available Orders */}
         {!currentOrder && (
-          <div className="bg-white rounded-2xl p-5 shadow-md w-[90%] border border-orange-100">
+          <div className="brand-panel rounded-3xl p-6 w-full">
             <h2 className="text-lg font-bold mb-4 flex items-center gap-2">
               <MdOutlineCheckCircle color={PRIMARY} /> Available Orders Nearby
             </h2>
@@ -288,17 +288,17 @@ export default function DeliveryBoy() {
                 assignments.map((order) => (
                   <div
                     key={order.assignmentId}
-                    className="border rounded-lg p-4 flex justify-between items-center"
+                    className="border border-[#d5ece9] rounded-2xl bg-white/70 p-4 flex justify-between items-center"
                   >
                     <div>
                       <p className="text-sm font-semibold">{order.shopName}</p>
-                      <p className="text-sm text-gray-500">{order.address?.street}</p>
+                      <p className="text-sm text-[#6b7f7f]">{order.address?.street}</p>
                       <p className="text-xs text-gray-400">
                         {order.items.length} items | ₹{order.subtotal}
                       </p>
                     </div>
                     <button
-                      className="bg-orange-500 text-white px-4 py-1 rounded-lg text-sm hover:bg-orange-600"
+                      className="brand-button px-4 py-2 rounded-full text-sm"
                       onClick={() => acceptOrder(order.assignmentId)}
                     >
                       Accept

@@ -86,15 +86,15 @@ if(selectedItem){
   },[selectedItem])
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-[#fff0ec] to-white p-6">
+    <div className="flex items-center justify-center min-h-screen bg-transparent p-6">
           <div className='absolute top-[20px] left-[20px] z-[10] mb-[10px]' onClick={()=>navigate("/")}>
-                        <MdKeyboardBackspace className='w-[25px] h-[25px] text-[#ff4d2d]'/>
+                        <MdKeyboardBackspace className='w-[25px] h-[25px] text-[#0f8b8d]'/>
                        </div>
       <form
         onSubmit={handleSubmit}
-        className="bg-white border border-[#ff4d2d33] shadow-lg rounded-xl p-8 max-w-lg w-full space-y-6"
+        className="brand-panel rounded-3xl p-8 max-w-lg w-full space-y-6"
       >
-        <h2 className="text-2xl font-bold text-gray-800 text-center mb-4">
+        <h2 className="text-2xl font-bold text-[#173a3a] text-center mb-4">
           Edit Food Item
         </h2>
 
@@ -107,7 +107,7 @@ if(selectedItem){
             placeholder="Enter Food Name"
             onChange={(e)=>setName(e.target.value)}
             required
-            className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-[#ff4d2d] focus:outline-none"
+            className="w-full border border-[#d5ece9] rounded-2xl p-3 focus:ring-2 focus:ring-[#0f8b8d] focus:outline-none"
           />
         </div>
 
@@ -120,7 +120,7 @@ if(selectedItem){
             onChange={(e)=>setPrice(e.target.value)}
             required
             min="0"
-            className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-[#ff4d2d] focus:outline-none"
+            className="w-full border border-[#d5ece9] rounded-2xl p-3 focus:ring-2 focus:ring-[#0f8b8d] focus:outline-none"
           />
         </div>
 
@@ -131,7 +131,7 @@ if(selectedItem){
              value={category}
             onChange={(e)=>setCategory(e.target.value)}
             required
-            className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-[#ff4d2d] focus:outline-none"
+            className="w-full border border-[#d5ece9] rounded-2xl p-3 focus:ring-2 focus:ring-[#0f8b8d] focus:outline-none"
           >
             <option value="">Select Category</option>
             {categories.map((cat) => (
@@ -149,13 +149,13 @@ if(selectedItem){
             name="image"
             accept="image/*"
            onChange={handleImage}
-            className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-[#ff4d2d] focus:outline-none"
+            className="w-full border border-[#d5ece9] rounded-2xl p-3 focus:ring-2 focus:ring-[#0f8b8d] focus:outline-none"
           />
           {frontendImage && (
             <img
               src={frontendImage}
               alt="Preview"
-              className="mt-3 w-full h-48 object-cover rounded-lg border border-gray-200"
+              className="mt-3 w-full h-48 object-cover rounded-2xl border border-[#d5ece9] border-gray-200"
             />
           )}
         </div>
@@ -167,7 +167,7 @@ if(selectedItem){
             value={type}
             onChange={(e)=>setType(e.target.value)}
             required
-            className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-[#ff4d2d] focus:outline-none"
+            className="w-full border border-[#d5ece9] rounded-2xl p-3 focus:ring-2 focus:ring-[#0f8b8d] focus:outline-none"
           >
             <option value="veg">veg</option>
             <option value="non veg">non veg</option>
@@ -176,7 +176,7 @@ if(selectedItem){
 
         <button
           type="submit"
-          className="w-full flex items-center justify-center gap-2 bg-[#ff4d2d] text-white px-6 py-3 rounded-full font-semibold shadow-md hover:bg-[#e64528] transition-colors"
+          className="w-full flex items-center justify-center gap-2 brand-button px-6 py-3 rounded-full font-semibold shadow-xl shadow-teal-900/10 hover:bg-[#0b6f71] transition-colors"
 
         >
           save
